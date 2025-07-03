@@ -18,22 +18,20 @@ public class JIntro extends JFrame {
 
     public JIntro() {
 
-        // --- Configurações do JFrame (Formulário) ---
+        //  Configurações do JFrame (Formulário) 
         setTitle("JKalango: A Missão Começa");
         setSize(700, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // O código abaixo para o background.png precisa carregar a imagem corretamente.
-        // Se background.png não estiver no diretório raiz do seu projeto ou no classpath,
-        // ele não será exibido. Considere usar getClass().getResource() para carregar recursos.
+    
         ImageIcon backgroundImage = new ImageIcon("background.png");
         JLabel lblImg = new JLabel(backgroundImage);
         getLayeredPane().add(lblImg, JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().setBackground(Color.BLACK);
 
-        // --- 1. Mensagem do JKalango ---
+        //  Mensagem do JKalango 
         JLabel mensagemLabel = new JLabel();
         mensagemLabel.setText("<html><body style='text-align: center; color: white; font-family: \"Press Start 2P\", cursive; font-size: 10px; text-shadow: 1px 1px 2px black;'>"
                                 + "Nas entranhas pútridas do **Cerrado Mágico**, outrora um Éden da **Orientação a Objetos**, agora jaz um domínio de pesadelo e **corrupção digital**. "
@@ -48,14 +46,14 @@ public class JIntro extends JFrame {
         mensagemLabel.setForeground(Color.WHITE);
         mensagemLabel.setFont(new Font("Serif", Font.PLAIN, 16));
 
-        // --- 2. Criar e Adicionar o JButton ---
+        //  Criar e Adicionar o JButton 
         JButton iniciarMissaoButton = new JButton("Iniciar Primeira Missão");
 
         iniciarMissaoButton.setForeground(Color.WHITE);
         iniciarMissaoButton.setBackground(new Color(50, 50, 50));
         iniciarMissaoButton.setFocusPainted(false);
 
-        // --- 3. Adicionar ação ao botão ---
+        //  Adicionar ação ao botão 
         iniciarMissaoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,18 +64,17 @@ public class JIntro extends JFrame {
             }
         });
 
-        // --- Layout e Adição dos Componentes ---
         setLayout(new BorderLayout());
 
         add(mensagemLabel, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(Color.BLACK); // Mudei para BLACK para combinar com o fundo
+        buttonPanel.setBackground(Color.BLACK); // Muda para BLACK para combinar com o fundo
         buttonPanel.add(iniciarMissaoButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
 
-        // --- Tornar o JFrame visível (sempre por último) ---
+        //  Tornar o JFrame visível (sempre por último) 
         setVisible(true);
     }
 }

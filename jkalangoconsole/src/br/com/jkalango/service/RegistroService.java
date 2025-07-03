@@ -1,4 +1,4 @@
-package br.com.jkalango.service; // ESTA LINHA É CRUCIAL e deve corresponder à pasta
+package br.com.jkalango.service; 
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -58,7 +58,7 @@ public class RegistroService {
                         }
                         return detailedErrorMessage.toString();
                     } else {
-                        return "Erro de validação, mas sem detalhes da API. Código: " + responseCode;
+                        return "Erro de validação" + responseCode;
                     }
                 }
             } else {

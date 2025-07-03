@@ -1,4 +1,4 @@
-package br.com.jkalango.view; // Esta linha deve ser EXATA
+package br.com.jkalango.view;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -6,11 +6,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JOptionPane;
-import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import br.com.jkalango.service.RegistroService; // ESTE IMPORT É CRUCIAL e deve apontar para o pacote correto
+import br.com.jkalango.service.RegistroService;
 
 public class JCadastroJogadorGabarito extends JFrame {
 
@@ -22,33 +24,99 @@ public class JCadastroJogadorGabarito extends JFrame {
 
     public JCadastroJogadorGabarito() {
         setTitle("Cadastro de Jogador - JKalango");
-        setSize(350, 300);
+        setSize(400, 350);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
-        add(new JLabel("Nome:"));
-        txtNome = new JTextField(25);
-        add(txtNome);
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
 
-        add(new JLabel("Nickname:"));
-        txtNickName = new JTextField(25);
-        add(txtNickName);
+        //  Configurações para a coluna dos Rótulos (coluna 0) 
+  
+        // Isso empurrará os rótulos para a direita, aproximando-os dos campos de texto.
+        gbc.weightx = 0.1; // Um pequeno peso para a coluna dos rótulos
+        gbc.fill = GridBagConstraints.NONE; // Rótulos não devem preencher o espaço horizontal
 
-        add(new JLabel("Email:"));
-        txtEmail = new JTextField(25);
-        add(txtEmail);
+        // Nome
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST; // Alinha o rótulo à direita dentro de sua célula
+        add(new JLabel("Nome:"), gbc);
 
-        add(new JLabel("Senha:"));
-        txtSenha = new JPasswordField(25);
-        add(txtSenha);
+        // Nickname
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        add(new JLabel("Nickname:"), gbc);
 
-        add(new JLabel("Telefone:"));
-        txtTelefone = new JTextField(25);
-        add(txtTelefone);
+        // Email
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.EAST;
+        add(new JLabel("Email:"), gbc);
 
+        // Senha
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.EAST;
+        add(new JLabel("Senha:"), gbc);
+
+        // Telefone
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.EAST;
+        add(new JLabel("Telefone:"), gbc);
+
+        // Configurações para a coluna dos Campos de Texto (coluna 1) 
+        gbc.weightx = 1.0; // Esta coluna deve levar a maior parte do espaço extra
+        gbc.fill = GridBagConstraints.HORIZONTAL; // Campos de texto preenchem horizontalmente
+
+        // Nome Campo
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST; // Alinha o campo à esquerda dentro de sua célula
+        txtNome = new JTextField(20);
+        add(txtNome, gbc);
+
+        // Nickname Campo
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        txtNickName = new JTextField(20);
+        add(txtNickName, gbc);
+
+        // Email Campo
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.WEST;
+        txtEmail = new JTextField(20);
+        add(txtEmail, gbc);
+
+        // Senha Campo
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        txtSenha = new JPasswordField(20);
+        add(txtSenha, gbc);
+
+        // Telefone Campo
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.WEST;
+        txtTelefone = new JTextField(20);
+        add(txtTelefone, gbc);
+
+        // Botão Cadastrar
+        // Resetamos o weightx e fill para o botão
+        gbc.weightx = 0;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridwidth = 2; // Ocupa duas colunas para centralizar
+        gbc.anchor = GridBagConstraints.CENTER; // Centraliza o botão
         JButton btnCadastrar = new JButton("Cadastrar");
-        add(btnCadastrar);
+        add(btnCadastrar, gbc);
 
         btnCadastrar.addActionListener(new ActionListener() {
             @Override
@@ -91,6 +159,10 @@ public class JCadastroJogadorGabarito extends JFrame {
     }
 
     public static void main(String[] args) {
-        new JCadastroJogadorGabarito();
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new JCadastroJogadorGabarito();
+            }
+        });
     }
 }
